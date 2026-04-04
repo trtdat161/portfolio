@@ -3,7 +3,6 @@
  * 1. Section numbering (01, 02...)
  * 2. Scroll reveal với IntersectionObserver
  */
-
 document.addEventListener("DOMContentLoaded", () => {
   /* ── 1. Đánh số section tự động ── */
   const sections = document.querySelectorAll("main section");
