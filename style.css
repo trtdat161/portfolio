@@ -30,6 +30,7 @@
   --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   --container: 1200px;
   --pad: clamp(24px, 5vw, 80px);
+  --nav-h: 72px; /* chiều cao navbar, dùng chung cho body padding + scroll offset */
 }
 
 /* ============================================================
@@ -46,6 +47,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Bù trừ chiều cao navbar fixed, để khi click anchor không bị
+     tiêu đề section chui vào gầm navbar */
+  scroll-padding-top: var(--nav-h);
 }
 
 body {
@@ -55,6 +59,23 @@ body {
   overflow-x: hidden;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  /* navbar là position:fixed nên bị lấy ra khỏi luồng layout,
+     phải chừa chỗ bằng padding-top ở body để không đè lên header */
+  padding-top: var(--nav-h);
+}
+
+/* Noise/grain rất nhẹ phủ toàn trang — tăng chiều sâu kiểu editorial,
+   opacity cực thấp + pointer-events:none nên không ảnh hưởng thao tác
+   hay độ đọc được của chữ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 img {
@@ -81,6 +102,137 @@ a:hover {
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 var(--pad);
+}
+
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%; /* JS cập nhật width theo % đã cuộn */
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+  z-index: 300; /* cao hơn navbar (200) để luôn nổi trên cùng */
+  transition: width 0.1s linear;
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  z-index: 200;
+  background: rgba(14, 14, 28, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar .nav-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar .logo {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: var(--text-1);
+  opacity: 1;
+}
+
+.navbar .logo:hover {
+  color: var(--accent);
+}
+
+.navbar .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.navbar .nav-links a {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-2);
+  padding: 6px 0;
+  opacity: 1;
+}
+
+/* Gạch chân trượt vào khi hover / active — cùng ngôn ngữ thị giác
+   với #channel a::before đã có sẵn trong file gốc */
+.navbar .nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width var(--transition);
+}
+
+.navbar .nav-links a:hover,
+.navbar .nav-links a.active {
+  color: var(--accent);
+}
+
+.navbar .nav-links a:hover::after,
+.navbar .nav-links a.active::after {
+  width: 100%;
+}
+
+/* Nút hamburger — chỉ hiện trên mobile */
+.navbar .nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  z-index: 300;
+}
+
+.navbar .nav-toggle span {
+  width: 100%;
+  height: 2px;
+  background: var(--text-1);
+  border-radius: 2px;
+  transition:
+    transform var(--transition),
+    opacity var(--transition);
+}
+
+.navbar .nav-toggle.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navbar .nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.navbar .nav-toggle.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ============================================================
@@ -209,12 +361,15 @@ header .parent h2::after {
   }
 }
 
-/* Address bar bottom */
+/* Address bar bottom — xếp dọc thay vì hàng ngang: 3 mục dài ngắn
+   khác nhau (Email/Phone ngắn, Facebook dài) nếu để chung 1 hàng sẽ
+   nhìn lệch cân đối. Xếp cột giúp căn trái đều tăm tắp bất kể độ dài. */
 
 header address {
   font-style: normal;
   display: flex;
-  gap: 40px;
+  flex-direction: column;
+  gap: 12px;
   padding-top: 28px;
   border-top: 1px solid var(--border);
 }
@@ -224,6 +379,9 @@ header address p {
   font-size: 0.78rem;
   color: var(--text-2);
   line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 header address a {
@@ -234,6 +392,24 @@ header address a {
 header address a:hover {
   color: var(--accent);
   opacity: 1;
+}
+
+/* Icon mail/phone/pin dùng chung cho header address + footer address.
+   Bọc icon + text trong 1 span (.contact-label) để giữ đúng số lượng
+   flex item ban đầu ở footer (label vs value), không làm lệch
+   justify-content: space-between */
+.contact-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-inline {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--accent);
+  opacity: 0.85;
 }
 
 /* ============================================================
@@ -430,6 +606,65 @@ section {
 }
 
 /* ============================================================
+   GALLERY — 1 ảnh kỷ niệm + text caption, layout giống #about
+   ============================================================ */
+
+#gallery {
+  background: var(--bg-2);
+}
+
+#gallery .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+#gallery .content h4 {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+#gallery .content h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+  color: var(--text-1);
+  margin-bottom: 20px;
+}
+
+#gallery .content p {
+  font-size: 1.02rem;
+  line-height: 1.9;
+  color: var(--text-2);
+  font-weight: 300;
+}
+
+#gallery > .container > img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  filter: grayscale(15%) drop-shadow(0 20px 50px rgba(0, 0, 0, 0.45));
+  transition:
+    filter var(--transition),
+    transform var(--transition);
+}
+
+#gallery > .container > img:hover {
+  filter: grayscale(0%) drop-shadow(0 20px 50px rgba(79, 255, 176, 0.12));
+  transform: translateY(-4px);
+}
+
+/* ============================================================
    SKILLS
    ============================================================ */
 
@@ -492,6 +727,20 @@ section {
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 10px;
+}
+
+/* Icon mono-line phía trên tiêu đề mỗi nhóm skill */
+#skills .skills-grid article .skill-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--accent);
+  opacity: 0.9;
+  margin-bottom: 16px;
+  transition: transform var(--transition);
+}
+
+#skills .skills-grid article:hover .skill-icon {
+  transform: translateY(-2px);
 }
 
 #skills .skills-grid article p {
@@ -607,18 +856,41 @@ section {
   font-weight: 300;
 }
 
-/* Tech line */
-
-#projects .project > div p:last-of-type {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-3);
-  letter-spacing: 0.3px;
+/* Tech stack — badge thay cho text thường, dùng chung 3 project */
+#projects .project > div .tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
 }
 
-#projects .project > div p:last-of-type strong {
-  color: var(--accent);
+#projects .project > div .tech-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
   font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-right: 2px;
+}
+
+#projects .project > div .tech-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.3px;
+  color: var(--accent);
+  border: 1px solid rgba(79, 255, 176, 0.28);
+  background: var(--accent-dim);
+  padding: 4px 12px;
+  border-radius: 50px;
+  transition:
+    border-color var(--transition),
+    background var(--transition);
+}
+
+#projects .project:hover > div .tech-badge {
+  border-color: rgba(79, 255, 176, 0.45);
 }
 
 #projects .project > div a {
@@ -719,22 +991,27 @@ footer {
 }
 
 footer .container {
+  /* Two-column layout: heading/description on the left, contact list on the right */
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 80px;
+  grid-template-columns: minmax(300px, 1fr) 1fr;
+  gap: 22px 56px;
   align-items: start;
+  max-width: 1000px;
 }
 
 footer h2 {
+  grid-column: 1 / 2; /* force into left column */
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(3rem, 7vw, 7rem);
+  font-size: clamp(3.4rem, 8.5vw, 8rem);
   letter-spacing: -3px;
   line-height: 0.9;
   color: var(--text-1);
+  margin: 0;
 }
 
 footer address {
+  grid-column: 2 / 3;
   font-style: normal;
   border-top: 1px solid var(--border);
   padding-top: 4px;
@@ -770,17 +1047,67 @@ footer address a:hover {
 /* Copyright */
 
 footer::after {
+  /* Copyright area is placed under the grid and spans full width */
   display: block;
   text-align: center;
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   color: var(--text-3);
-  letter-spacing: 2px;
-  padding-top: 56px;
+  letter-spacing: 1.6px;
+  padding-top: 40px;
   max-width: var(--container);
   margin: 0 auto;
   padding-left: var(--pad);
   padding-right: var(--pad);
+}
+
+/* Description paragraph beside the heading */
+.footer-desc {
+  grid-column: 1 / 2;
+  color: var(--text-2);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  margin-top: 8px;
+}
+
+/* Make contact labels a fixed width on large screens so values align */
+footer address .contact-label {
+  min-width: 170px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-2);
+}
+
+/* Copyright paragraph inside container (HTML) should span full width */
+footer > .container > p:last-of-type {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 18px;
+  color: var(--text-3);
+}
+
+/* Responsive: stack footer into single column on smaller screens */
+@media (max-width: 768px) {
+  footer .container {
+    grid-template-columns: 1fr;
+    gap: 18px 0;
+    padding-left: var(--pad);
+    padding-right: var(--pad);
+  }
+
+  footer address {
+    grid-column: 1 / -1;
+  }
+
+  footer address p {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  footer address .contact-label {
+    min-width: 0;
+  }
 }
 
 /* ============================================================
@@ -878,6 +1205,11 @@ footer::after {
     grid-row: 3;
     justify-content: center;
   }
+
+  /* Navbar: thu gọn khoảng cách link để đỡ tràn trước khi vào breakpoint mobile */
+  .navbar .nav-links {
+    gap: 18px;
+  }
 }
 
 /* ============================================================
@@ -887,34 +1219,54 @@ footer::after {
 @media (max-width: 768px) {
   #introduction .container,
   #about .container,
-  #education .container {
+  #education .container,
+  #gallery .container {
     grid-template-columns: 1fr;
     gap: 40px;
   }
+
+  /* Navbar: chuyển sang menu dạng dropdown + nút hamburger */
+  .navbar .nav-links {
+    position: fixed;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--border);
+    padding: 20px var(--pad) 28px;
+    transform: translateY(-140%);
+    transition:
+      transform var(--transition),
+      opacity var(--transition);
+    /* When hidden, allow clicks to pass through to underlying content */
+    pointer-events: none;
+    opacity: 0;
+    z-index: 260; /* ensure menu sits above page content */
+  }
+
+  .navbar .nav-links.open {
+    transform: translateY(0);
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  .navbar .nav-links a {
+    display: block;
+    padding: 10px 0;
+    width: 100%;
+  }
+
+  .navbar .nav-toggle {
+    display: flex;
+  }
+
   /* ============================================================
    RESPONSIVE 480px
    ============================================================ */
-  @media (max-width: 480px) {
-    header .parent {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-    /* header .parent img {
-      display: none;
-    } */
-    header .parent h1 {
-      font-size: 2.1rem;
-      letter-spacing: clamp(-3px, -1.8vw, -5px);
-      text-align: center;
-      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
-    }
-    #introduction .content h2 {
-      font-size: 1.6rem;
-    }
-    header .title {
-      flex-direction: column;
-    }
-  }
+
   #introduction > .container > img {
     max-width: 240px;
     margin: 0 auto;
@@ -951,6 +1303,19 @@ footer::after {
   footer .container {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+  .footer-title {
+    margin-bottom: 60px;
+  }
+
+  .footer-title h2 {
+    margin-bottom: 18px;
+  }
+
+  .footer-title p {
+    max-width: 520px;
+    color: var(--text-2);
+    line-height: 1.8;
   }
   header .container {
     padding-top: 32px;
@@ -989,6 +1354,27 @@ footer::after {
     justify-content: center;
   }
 }
+@media (max-width: 480px) {
+  header .parent {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  /* header .parent img {
+      display: none;
+    } */
+  header .parent h1 {
+    font-size: 2.1rem;
+    letter-spacing: clamp(-3px, -1.8vw, -5px);
+    text-align: center;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  }
+  #introduction .content h2 {
+    font-size: 1.6rem;
+  }
+  header .title {
+    flex-direction: column;
+  }
+}
 
 strong {
   /* font-weight: bold; */
@@ -998,4 +1384,48 @@ strong {
 #education .aptech-logo {
   opacity: 1 !important;
   filter: none;
+}
+
+/* ============================================================
+   BACK TO TOP
+   ============================================================ */
+
+.back-to-top {
+  position: fixed;
+  right: clamp(20px, 4vw, 40px);
+  bottom: clamp(20px, 4vw, 40px);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-2);
+  border: 1px solid var(--border-2);
+  border-radius: 50%;
+  color: var(--accent);
+  cursor: pointer;
+  z-index: 150;
+  opacity: 0;
+  pointer-events: none; /* ẩn thì không bắt click, tránh đụng nội dung bên dưới */
+  transform: translateY(10px);
+  transition:
+    opacity var(--transition),
+    transform var(--transition),
+    border-color var(--transition);
+}
+
+/* JS gắn class này khi cuộn quá 1 viewport */
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  border-color: rgba(79, 255, 176, 0.45);
+}
+
+.back-to-top svg {
+  width: 18px;
+  height: 18px;
 }
