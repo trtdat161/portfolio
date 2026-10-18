@@ -4,6 +4,7 @@
  * 2. Scroll reveal với IntersectionObserver
  * 3. Navbar: toggle mobile + active link theo section đang xem
  */
+console.log("SCRIPT V2 OK");
 document.addEventListener("DOMContentLoaded", () => {
   console.log("JS loaded");
 

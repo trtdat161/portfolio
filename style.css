@@ -1274,8 +1274,8 @@ footer > .container > p:last-of-type {
 
   /* Navbar: chuyển sang menu dạng dropdown + nút hamburger */
   .navbar .nav-links {
-    position: fixed;
-    top: var(--nav-h);
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
     flex-direction: column;
@@ -1377,7 +1377,7 @@ footer > .container > p:last-of-type {
   }
   header .parent img {
     max-width: 52%;
-    opacity: 0.6;
+    opacity: 1;
   }
   /* ----- thêm ----- */
   header .parent {
@@ -2080,4 +2080,9 @@ header address {
   #projects .project::before {
     animation: none;
   }
+}
+
+html,
+body {
+  overflow-x: clip;
 }
