@@ -16,9 +16,9 @@
   --bg-3: #1a1a34;
   --border: rgba(255, 255, 255, 0.1);
   --border-2: rgba(255, 255, 255, 0.18);
-  --accent: #4fffb0;
-  --accent-dim: rgba(79, 255, 176, 0.06);
-  --accent-glow: rgba(79, 255, 176, 0.18);
+  --accent: #39f280;
+  --accent-dim: rgba(57, 242, 160, 0.08);
+  --accent-glow: rgba(57, 242, 160, 0.22);
   --text-1: #edf0fa;
   --text-2: #b4bcd1;
   --text-3: #cccccc;
@@ -90,7 +90,7 @@ a {
 }
 
 a:hover {
-  opacity: 0.75;
+  opacity: 1;
 }
 
 /* ============================================================
@@ -131,10 +131,17 @@ a:hover {
   right: 0;
   height: var(--nav-h);
   z-index: 200;
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background: rgba(14, 14, 28, 0.72);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
 }
 
 .navbar .nav-inner {
@@ -275,9 +282,29 @@ header .title {
   justify-content: space-between;
   align-items: center;
   padding-bottom: 32px;
-  border-bottom: 1px solid var(--border);
+  position: relative;
+  border-bottom: 0;
 }
 
+header .title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(180, 188, 209, 0.22) 12%,
+    rgba(180, 188, 209, 0.16) 40%,
+    rgba(57, 242, 160, 0.72) 50%,
+    rgba(180, 188, 209, 0.16) 60%,
+    rgba(180, 188, 209, 0.22) 88%,
+    transparent
+  );
+  box-shadow: 0 0 8px rgba(57, 242, 160, 0.16);
+}
 header .title h2 {
   font-family: var(--font-mono);
   font-size: 1.3rem;
@@ -339,6 +366,26 @@ header .parent h2 {
   align-items: center;
   gap: 10px;
   width: fit-content;
+}
+
+header .parent h2 {
+  animation: role-glow 3.2s ease-in-out infinite;
+}
+
+@keyframes role-glow {
+  0%,
+  100% {
+    filter: brightness(0.82);
+  }
+  50% {
+    filter: brightness(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  header .parent h2 {
+    animation: none;
+  }
 }
 
 header .parent h2::before {
@@ -1238,9 +1285,11 @@ footer > .container > p:last-of-type {
     border-bottom: 1px solid var(--border);
     padding: 20px var(--pad) 28px;
     transform: translateY(-140%);
+    visibility: hidden;
     transition:
       transform var(--transition),
-      opacity var(--transition);
+      opacity var(--transition),
+      visibility var(--transition);
     /* When hidden, allow clicks to pass through to underlying content */
     pointer-events: none;
     opacity: 0;
@@ -1251,6 +1300,7 @@ footer > .container > p:last-of-type {
     transform: translateY(0);
     pointer-events: auto;
     opacity: 1;
+    visibility: visible;
   }
 
   .navbar .nav-links a {
@@ -1387,6 +1437,181 @@ strong {
 }
 
 /* ============================================================
+   EXPERIENCE
+   ============================================================ */
+
+#experience {
+  background: var(--bg);
+}
+
+#experience .experience-content {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+#experience .experience-eyebrow {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+#experience h2 {
+  color: var(--text-1);
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1;
+  margin-bottom: 36px;
+}
+
+#experience .experience-card {
+  background:
+    linear-gradient(135deg, rgba(57, 242, 160, 0.07), transparent 48%),
+    var(--bg-2);
+  border: 1px solid rgba(57, 242, 160, 0.24);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+  padding: clamp(24px, 4vw, 42px);
+  transition:
+    border-color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+#experience .experience-card:hover {
+  border-color: rgba(57, 242, 160, 0.46);
+  box-shadow:
+    0 22px 56px rgba(0, 0, 0, 0.26),
+    0 0 28px rgba(57, 242, 160, 0.06);
+  transform: translateY(-3px);
+}
+
+#experience .experience-heading {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+#experience .experience-company-block {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+}
+
+#experience .experience-logo {
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  flex: 0 0 auto;
+  height: 58px;
+  object-fit: contain;
+  padding: 7px;
+  width: 128px;
+}
+#experience .experience-heading h3 {
+  color: var(--text-1);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+#experience .experience-company,
+#experience .experience-dates,
+#experience .experience-tech-label {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+#experience .experience-company {
+  margin-top: 6px;
+}
+#experience .experience-dates {
+  align-self: center;
+  background: rgba(57, 242, 160, 0.08);
+  border: 1px solid rgba(57, 242, 160, 0.22);
+  border-radius: 999px;
+  padding: 7px 12px;
+  white-space: nowrap;
+}
+
+#experience .experience-intro,
+#experience .experience-contributions li {
+  color: var(--text-2);
+  font-size: 0.96rem;
+  line-height: 1.8;
+}
+
+#experience .experience-intro {
+  margin-bottom: 22px;
+}
+
+#experience .experience-card h4 {
+  color: var(--text-1);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+#experience .experience-contributions {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  margin-bottom: 24px;
+}
+
+#experience .experience-contributions li {
+  border-left: 1px solid rgba(57, 242, 160, 0.35);
+  padding-left: 14px;
+}
+
+#experience .experience-contributions strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+#experience .experience-tech {
+  align-items: center;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 18px;
+}
+
+#experience .experience-tech > span:not(.experience-tech-label) {
+  background: var(--accent-dim);
+  border: 1px solid rgba(57, 242, 160, 0.28);
+  border-radius: 50px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 5px 11px;
+}
+
+@media (max-width: 768px) {
+  #experience .experience-heading {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+/* ============================================================
    BACK TO TOP
    ============================================================ */
 
@@ -1428,4 +1653,431 @@ strong {
 .back-to-top svg {
   width: 18px;
   height: 18px;
+}
+
+/* One continuous technical grid stays visible across the whole page while scrolling. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.62;
+  background-image:
+    linear-gradient(rgba(180, 220, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180, 220, 255, 0.055) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+/* Keep soft color variation behind the shared grid from top to bottom. */
+header,
+section,
+footer {
+  position: relative;
+  isolation: isolate;
+  background-image:
+    radial-gradient(
+      ellipse at 12% 18%,
+      rgba(0, 200, 255, 0.065),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 88% 78%,
+      rgba(57, 242, 160, 0.075),
+      transparent 42%
+    );
+}
+
+#about,
+#gallery,
+#skills,
+#channel {
+  background-image:
+    radial-gradient(
+      ellipse at 82% 20%,
+      rgba(0, 200, 255, 0.07),
+      transparent 40%
+    ),
+    radial-gradient(
+      ellipse at 16% 82%,
+      rgba(57, 242, 160, 0.065),
+      transparent 42%
+    );
+}
+
+/* Spread a quiet glow through project and skill panels as well. */
+#skills .skills-grid,
+#projects .project,
+#experience .experience-card {
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.22),
+    0 0 34px rgba(57, 242, 160, 0.055);
+}
+
+#skills .skills-grid article:hover,
+#projects .project:hover,
+#experience .experience-card:hover {
+  box-shadow:
+    0 22px 56px rgba(0, 0, 0, 0.28),
+    0 0 38px rgba(57, 242, 160, 0.11);
+}
+
+/* Animated ambient rings in the hero. */
+header {
+  overflow: hidden;
+}
+
+header .container {
+  position: relative;
+  z-index: 2;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  top: 18%;
+  right: 8%;
+  width: clamp(260px, 34vw, 440px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(57, 242, 160, 0.15);
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(57, 242, 160, 0.1),
+      rgba(57, 242, 160, 0.025) 48%,
+      transparent 72%
+    ),
+    repeating-radial-gradient(
+      circle,
+      transparent 0 48px,
+      rgba(180, 220, 255, 0.075) 49px 50px
+    );
+  box-shadow:
+    0 0 0 18px rgba(57, 242, 160, 0.025),
+    0 0 0 54px rgba(57, 242, 160, 0.018),
+    0 0 90px rgba(57, 242, 160, 0.08);
+  pointer-events: none;
+  animation: ambient-pulse 9s ease-in-out infinite;
+}
+
+@keyframes ambient-pulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.97);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+@media (max-width: 768px) {
+  body::after {
+    background-size: 64px 64px;
+    opacity: 0.48;
+  }
+
+  header::after {
+    top: 22%;
+    right: -24%;
+    width: 300px;
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  header::after {
+    animation: none;
+  }
+}
+
+/* Give the page separators a soft base and a slow moving accent trace. */
+@keyframes divider-sweep {
+  from {
+    background-position: -180px 0;
+  }
+  to {
+    background-position: calc(100% + 180px) 0;
+  }
+}
+
+.navbar,
+header,
+section {
+  border-bottom-color: rgba(180, 188, 209, 0.12);
+}
+
+.navbar,
+header {
+  position: relative;
+}
+
+.navbar::after,
+header::before,
+section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  pointer-events: none;
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    rgba(57, 242, 160, 0.12) 22%,
+    rgba(57, 242, 160, 0.9) 50%,
+    rgba(57, 242, 160, 0.12) 78%,
+    transparent
+  );
+  background-repeat: no-repeat;
+  background-size: 180px 100%;
+  animation: divider-sweep 12s linear infinite;
+}
+
+.navbar::after {
+  z-index: 201;
+}
+
+header address,
+#projects .project,
+footer address,
+#experience .experience-tech {
+  position: relative;
+  border-top-color: rgba(180, 188, 209, 0.12);
+}
+
+header address::before,
+#projects .project::before,
+footer address::before,
+#experience .experience-tech::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 1px;
+  pointer-events: none;
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    rgba(57, 242, 160, 0.12) 22%,
+    rgba(57, 242, 160, 0.9) 50%,
+    rgba(57, 242, 160, 0.12) 78%,
+    transparent
+  );
+  background-repeat: no-repeat;
+  background-size: 180px 100%;
+  animation: divider-sweep 12s linear infinite;
+}
+
+header .title::after {
+  background-size: 180px 1px;
+  animation: divider-sweep 12s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .navbar::after,
+  header::before,
+  section::before,
+  header address::before,
+  #projects .project::before,
+  footer address::before,
+  #experience .experience-tech::before,
+  header .title::after {
+    animation-duration: 16s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar::after,
+  header::before,
+  section::before,
+  header address::before,
+  #projects .project::before,
+  footer address::before,
+  #experience .experience-tech::before,
+  header .title::after {
+    animation: none;
+    background-position: 50% 0;
+  }
+}
+
+/* Keep one continuous accent sweep per divider and make the rules easier to see. */
+.navbar,
+header,
+section {
+  border-bottom-width: 2px;
+}
+
+header address,
+#projects .project,
+footer address,
+#experience .experience-tech {
+  border-top-width: 2px;
+}
+
+footer address p {
+  border-bottom-width: 2px;
+}
+
+.navbar .nav-links {
+  border-bottom-width: 2px;
+}
+
+.navbar::after,
+header::before,
+section::before,
+header address::before,
+#projects .project::before,
+footer address::before,
+#experience .experience-tech::before,
+header .title::after {
+  height: 2px;
+  background-size: 220px 100%;
+  background-repeat: no-repeat;
+  animation-duration: 18s;
+}
+
+header .title::after {
+  background-size: 220px 2px;
+}
+
+/* Restore the original, quiet navbar divider without the animated overlay. */
+.navbar {
+  border-bottom-width: 1px;
+}
+
+.navbar::after {
+  display: none;
+}
+
+/* Restore the fixed navbar and remove the two unwanted header dividers. */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom-width: 1px;
+}
+
+header .title {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+header .title::after,
+header address::before {
+  display: none;
+}
+
+header address {
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* Projects get a moving perimeter highlight; section divider rules stay unchanged. */
+/* ============================================================
+   PROJECT CARD — viền sáng chạy vòng quanh card
+   ============================================================ */
+
+@property --project-border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes project-border-orbit {
+  to {
+    --project-border-angle: 360deg;
+  }
+}
+
+#projects .project {
+  position: relative;
+  isolation: isolate;
+  padding: 32px;
+  margin-bottom: 32px;
+  border: 1px solid rgba(57, 242, 160, 0.24);
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(57, 242, 160, 0.035),
+    transparent 45%
+  );
+  box-shadow: 0 0 18px rgba(57, 242, 160, 0.045);
+}
+
+#projects .project:last-child {
+  margin-bottom: 0;
+}
+
+#projects .project::before {
+  content: "";
+  position: absolute;
+  inset: -1px; /* phủ lên đúng đường viền 1px của card */
+  height: auto; /* RESET: các rule "divider" phía trên đã set height 1-2px */
+  padding: 2px; /* độ dày của viền chạy */
+  border-radius: 19px; /* = border-radius card (18px) + 1px */
+  box-sizing: border-box;
+  pointer-events: none;
+  z-index: 2;
+  background: conic-gradient(
+    from var(--project-border-angle),
+    transparent 0deg 300deg,
+    rgba(57, 242, 160, 0.28) 322deg,
+    rgba(57, 242, 160, 1) 342deg,
+    rgba(139, 255, 205, 0.8) 350deg,
+    transparent 360deg
+  );
+  /* Mask: chỉ giữ lại phần "khung" (padding), khoét rỗng phần giữa */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: project-border-orbit 3s linear infinite;
+}
+
+/* Nội dung card nằm dưới viền sáng */
+#projects .project > * {
+  position: relative;
+  z-index: 1;
+}
+
+#projects .project:hover {
+  border-color: rgba(57, 242, 160, 0.48);
+  box-shadow: 0 0 26px rgba(57, 242, 160, 0.11);
+}
+
+@media (max-width: 768px) {
+  #projects .project {
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #projects .project::before {
+    animation: none;
+  }
 }

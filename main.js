@@ -108,17 +108,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelector(".nav-links");
 
   if (navToggle && navLinks) {
+    const setMenuOpen = (isOpen) => {
+      navLinks.classList.toggle("open", isOpen);
+      navToggle.classList.toggle("active", isOpen);
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+      navToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    };
+
     navToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
-      navToggle.classList.toggle("active");
+      setMenuOpen(!navLinks.classList.contains("open"));
     });
 
-    // Click vào 1 link thì tự đóng menu (quan trọng cho mobile)
     navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        navToggle.classList.remove("active");
-      });
+      link.addEventListener("click", () => setMenuOpen(false));
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768) setMenuOpen(false);
     });
   }
 

@@ -91,19 +91,22 @@
       <div class="container nav-inner">
         <a href="#home" class="logo">TTD</a>
 
-        <ul class="nav-links">
+        <ul class="nav-links" id="primary-navigation">
           <li><a href="#home">Home</a></li>
-          <li><a href="#introduction">Introduction</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#education">Education</a></li>
-          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#experience">Experience</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#channel">Channel</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
 
-        <button class="nav-toggle" aria-label="Mở menu">
+        <button
+          class="nav-toggle"
+          aria-label="Mở menu"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+        >
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -278,6 +281,65 @@
             alt="aptech-photo"
             style="border-radius: 7px"
           />
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience">
+        <div class="container">
+          <div class="experience-content">
+            <p class="experience-eyebrow">WORK EXPERIENCE</p>
+            <h2>Experience</h2>
+            <article class="experience-card">
+              <div class="experience-heading">
+                <div class="experience-company-block">
+                  <img class="experience-logo" src="img/gss.png" alt="Green Space Solutions logo" />
+                  <div>
+                    <h3>.NET Developer Intern</h3>
+                    <p class="experience-company">Green Space Solutions (GSS)</p>
+                  </div>
+                </div>
+                <span class="experience-dates">Jul 2026 &#8211; Oct 2026</span>
+              </div>
+              <p class="experience-intro">
+                Contributed to enterprise web application development and
+                maintenance, gaining hands-on experience in feature enhancement,
+                database optimization, debugging, and software testing.
+              </p>
+              <h4>Key Contributions</h4>
+              <ul class="experience-contributions">
+                <li>
+                  <strong>Feature Enhancement:</strong> Improved map search
+                  functionality, integrated external map data, and addressed
+                  filtering issues to ensure results matched specified criteria.
+                </li>
+                <li>
+                  <strong>Database Optimization:</strong> Optimized database
+                  queries to improve map loading performance and investigated
+                  issues affecting search functionality.
+                </li>
+                <li>
+                  <strong>Data Validation:</strong> Developed a script to scan
+                  database records and identify valid data for further review.
+                </li>
+                <li>
+                  <strong>Debugging &amp; Testing:</strong> Investigated
+                  application issues and tested mobile web functionality,
+                  including digital signature compatibility.
+                </li>
+                <li>
+                  <strong>Data Export Improvements:</strong> Updated database
+                  queries and export logic to support additional data fields and
+                  meet filtering requirements.
+                </li>
+                <li>
+                  <strong>Testing &amp; Documentation:</strong> Performed
+                  functional testing, investigated reported issues, and prepared
+                  technical documentation.
+                </li>
+              </ul>
+            </article>
+          </div>
         </div>
       </section>
 
