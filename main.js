@@ -33,9 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
       "contact.location": "Go Vap, Ho Chi Minh City",
       "introduction.title": "INTRODUCTION",
       "introduction.description":
-        "Final-year IT student at Aptech Vietnam with hands-on experience in web development. Specialized in React for building responsive dashboards and integrating RESTful APIs. Also possess foundational knowledge in ASP.NET Core for backend development.",
+        "Final-year Information Technology student at Aptech Vietnam with hands-on experience building web applications, from responsive user interfaces to backend services and RESTful API integrations. My work also extends to robotics and IoT, including embedded software and connecting hardware to real-time control systems.",
       "education.title": "EDUCATION",
-      "education.degree": "Advanced Diploma in Software Engineering (ADSE)",
+      "education.degree": "Software Engineering Program (ADSE)",
       "education.field": "Field of Study: Information Technology",
       "education.major": "Major: Software Engineering",
       "experience.eyebrow": "WORK EXPERIENCE",
@@ -116,9 +116,9 @@ document.addEventListener("DOMContentLoaded", () => {
       "contact.location": "Gò Vấp, Thành phố Hồ Chí Minh",
       "introduction.title": "GIỚI THIỆU",
       "introduction.description":
-        "Sinh viên năm cuối ngành Công nghệ thông tin tại Aptech Việt Nam, có kinh nghiệm thực tế trong phát triển web. Có chuyên môn về React để xây dựng dashboard tương thích nhiều thiết bị và tích hợp RESTful API. Đồng thời có kiến thức nền tảng về ASP.NET Core cho phát triển backend.",
+        "Sinh viên năm cuối ngành Công nghệ thông tin tại Aptech Việt Nam, có kinh nghiệm thực tế xây dựng ứng dụng web từ giao diện tương thích nhiều thiết bị đến dịch vụ backend và tích hợp RESTful API. Bên cạnh đó, tôi còn tham gia các dự án robot và IoT, bao gồm phát triển phần mềm nhúng và kết nối phần cứng với hệ thống điều khiển thời gian thực.",
       "education.title": "HỌC VẤN",
-      "education.degree": "Bằng Cao đẳng Nâng cao Kỹ thuật Phần mềm (ADSE)",
+      "education.degree": "Chương trình đào tạo Kỹ thuật Phần mềm (ADSE)",
       "education.field": "Lĩnh vực: Công nghệ thông tin",
       "education.major": "Chuyên ngành: Kỹ thuật phần mềm",
       "experience.eyebrow": "KINH NGHIỆM LÀM VIỆC",
@@ -182,10 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "languageSwitcherToggle",
   );
   const languageOptions = document.getElementById("languageOptions");
-  const browserLanguage = navigator.language || "en";
-  let currentLanguage = browserLanguage.toLowerCase().startsWith("vi")
-    ? "vi"
-    : "en";
+  let currentLanguage = "en";
 
   const applyLanguage = (language) => {
     currentLanguage = language;
