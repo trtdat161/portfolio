@@ -92,13 +92,15 @@
         <a href="#home" class="logo">TTD</a>
 
         <ul class="nav-links" id="primary-navigation">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#home" data-i18n="nav.home">Home</a></li>
+          <li><a href="#introduction" data-i18n="nav.about">About</a></li>
+          <li><a href="#education" data-i18n="nav.education">Education</a></li>
+          <li>
+            <a href="#experience" data-i18n="nav.experience">Experience</a>
+          </li>
+          <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+          <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
 
         <button
@@ -112,6 +114,38 @@
         </button>
       </div>
     </nav>
+
+    <div class="language-switcher" id="languageSwitcher">
+      <div
+        class="language-options"
+        id="languageOptions"
+        aria-label="Choose language"
+        hidden
+      >
+        <button type="button" data-language-select="vi">🇻🇳 Tiếng Việt</button>
+        <button type="button" data-language-select="en">🇬🇧 English</button>
+      </div>
+      <button
+        class="language-switcher-toggle"
+        id="languageSwitcherToggle"
+        type="button"
+        aria-label="Choose language"
+        aria-controls="languageOptions"
+        aria-expanded="false"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
+    </div>
 
     <!-- header -->
     <header id="home">
@@ -132,7 +166,7 @@
             alt="avatar"
             style="border-radius: 12px"
           />
-          <h2>Software Developer</h2>
+          <h2 data-i18n="hero.role">Software Developer</h2>
         </div>
 
         <address>
@@ -150,7 +184,7 @@
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="m22 6-10 7L2 6" />
               </svg>
-              Email:
+              <span data-i18n="contact.email">Email:</span>
             </span>
             <a href="mailto:trtdat161@gmail.com">trtdat161@gmail.com</a>
           </p>
@@ -169,7 +203,7 @@
                   d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
                 />
               </svg>
-              Phone:
+              <span data-i18n="contact.phone">Phone:</span>
             </span>
             <a href="tel:0374757256">037 4757 256</a>
           </p>
@@ -189,7 +223,7 @@
                   d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
                 />
               </svg>
-              Facebook:
+              <span data-i18n="contact.facebook">Facebook:</span>
             </span>
             <a
               href="https://www.facebook.com/tien.at.684342"
@@ -213,7 +247,7 @@
                   d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.66-.22.66-.49v-1.73c-2.78.6-3.37-1.18-3.37-1.18-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.5 9.5 0 0 1 12 6.8a9.5 9.5 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.35 4.69-4.58 4.94.36.31.68.92.68 1.86v2.76c0 .27.18.59.67.49A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"
                 />
               </svg>
-              GitHub:
+              <span data-i18n="contact.github">GitHub:</span>
             </span>
             <a
               href="https://github.com/trtdat161"
@@ -234,8 +268,8 @@
         <div class="container">
           <img src="./img/avatar.jpg" alt="Tran-Tien-Dat-photo" />
           <div class="content">
-            <h2>INTRODUCTION</h2>
-            <p>
+            <h2 data-i18n="introduction.title">INTRODUCTION</h2>
+            <p data-i18n="introduction.description">
               Final-year IT student at Aptech Vietnam with hands-on experience
               in web development. Specialized in React for building responsive
               dashboards and integrating RESTful APIs. Also possess foundational
@@ -245,35 +279,20 @@
         </div>
       </section>
 
-      <!-- ABOUT -->
-      <section id="about">
-        <div class="container">
-          <div class="content">
-            <h2>TRAN TIEN DAT</h2>
-            <h4>ABOUT ME</h4>
-            <p>
-              Passionate about building clean, responsive, and user-friendly web
-              applications. I enjoy learning new technologies, solving problems,
-              and turning ideas into practical software solutions. Always
-              striving to improve my skills and create meaningful digital
-              experiences.
-            </p>
-          </div>
-
-          <img src="./img/dat-xoa-nen-jpg.png" alt="Tran-Tien-Dat-photo" />
-        </div>
-      </section>
-
       <!-- EDUCATION -->
       <section id="education">
         <div class="container">
           <div class="content">
-            <h2>EDUCATION</h2>
+            <h2 data-i18n="education.title">EDUCATION</h2>
             <article>
               <h3>Aptech Vietnam</h3>
-              <p>Advanced Diploma in Software Engineering (ADSE)</p>
-              <p>Field of Study: Information Technology</p>
-              <p>Major: Software Engineering</p>
+              <p data-i18n="education.degree">
+                Advanced Diploma in Software Engineering (ADSE)
+              </p>
+              <p data-i18n="education.field">
+                Field of Study: Information Technology
+              </p>
+              <p data-i18n="education.major">Major: Software Engineering</p>
             </article>
           </div>
           <img
@@ -289,8 +308,10 @@
       <section id="experience">
         <div class="container">
           <div class="experience-content">
-            <p class="experience-eyebrow">WORK EXPERIENCE</p>
-            <h2>Experience</h2>
+            <p class="experience-eyebrow" data-i18n="experience.eyebrow">
+              WORK EXPERIENCE
+            </p>
+            <h2 data-i18n="experience.title">Experience</h2>
             <article class="experience-card">
               <div class="experience-heading">
                 <div class="experience-company-block">
@@ -300,49 +321,82 @@
                     alt="Green Space Solutions logo"
                   />
                   <div>
-                    <h3>.NET Developer Intern</h3>
+                    <h3 data-i18n="experience.role">.NET Developer Intern</h3>
                     <p class="experience-company">
-                      Green Space Solutions (GSS)
+                      <span data-i18n="experience.company"
+                        >Green Space Solutions (GSS)</span
+                      >
                     </p>
                   </div>
                 </div>
-                <span class="experience-dates">Jul 2026 &#8211; Oct 2026</span>
+                <span class="experience-dates" data-i18n="experience.dates"
+                  >Jul 2026 &#8211; Oct 2026</span
+                >
               </div>
-              <p class="experience-intro">
+              <p class="experience-intro" data-i18n="experience.description">
                 Contributed to enterprise web application development and
                 maintenance, gaining hands-on experience in feature enhancement,
                 database optimization, debugging, and software testing.
               </p>
-              <h4>Key Contributions</h4>
+              <h4 data-i18n="experience.contributions">Key Contributions</h4>
               <ul class="experience-contributions">
                 <li>
-                  <strong>Feature Enhancement:</strong> Improved map search
-                  functionality, integrated external map data, and addressed
-                  filtering issues to ensure results matched specified criteria.
+                  <strong data-i18n="experience.feature"
+                    >Feature Enhancement:</strong
+                  >
+                  <span data-i18n="experience.featureDescription"
+                    >Improved map search functionality, integrated external map
+                    data, and addressed filtering issues to ensure results
+                    matched specified criteria.</span
+                  >
                 </li>
                 <li>
-                  <strong>Database Optimization:</strong> Optimized database
-                  queries to improve map loading performance and investigated
-                  issues affecting search functionality.
+                  <strong data-i18n="experience.database"
+                    >Database Optimization:</strong
+                  >
+                  <span data-i18n="experience.databaseDescription"
+                    >Optimized database queries to improve map loading
+                    performance and investigated issues affecting search
+                    functionality.</span
+                  >
                 </li>
                 <li>
-                  <strong>Data Validation:</strong> Developed a script to scan
-                  database records and identify valid data for further review.
+                  <strong data-i18n="experience.validation"
+                    >Data Validation:</strong
+                  >
+                  <span data-i18n="experience.validationDescription"
+                    >Developed a script to scan database records and identify
+                    valid data for further review.
+                  </span>
                 </li>
                 <li>
-                  <strong>Debugging &amp; Testing:</strong> Investigated
-                  application issues and tested mobile web functionality,
-                  including digital signature compatibility.
+                  <strong data-i18n="experience.debugging"
+                    >Debugging &amp; Testing:</strong
+                  >
+                  <span data-i18n="experience.debuggingDescription"
+                    >Investigated application issues and tested mobile web
+                    functionality, including digital signature
+                    compatibility.</span
+                  >
                 </li>
                 <li>
-                  <strong>Data Export Improvements:</strong> Updated database
-                  queries and export logic to support additional data fields and
-                  meet filtering requirements.
+                  <strong data-i18n="experience.export"
+                    >Data Export Improvements:</strong
+                  >
+                  <span data-i18n="experience.exportDescription"
+                    >Updated database queries and export logic to support
+                    additional data fields and meet filtering
+                    requirements.</span
+                  >
                 </li>
                 <li>
-                  <strong>Testing &amp; Documentation:</strong> Performed
-                  functional testing, investigated reported issues, and prepared
-                  technical documentation.
+                  <strong data-i18n="experience.testing"
+                    >Testing &amp; Documentation:</strong
+                  >
+                  <span data-i18n="experience.testingDescription"
+                    >Performed functional testing, investigated reported issues,
+                    and prepared technical documentation.</span
+                  >
                 </li>
               </ul>
             </article>
@@ -354,9 +408,9 @@
       <section id="gallery">
         <div class="container">
           <div class="content">
-            <h4>MOMENT</h4>
-            <h2>SMART TECH SHOW 2026</h2>
-            <p>
+            <h4 data-i18n="gallery.eyebrow">MOMENT</h4>
+            <h2 data-i18n="gallery.title">SMART TECH SHOW 2026</h2>
+            <p data-i18n="gallery.description">
               Attended Smart Tech Show 2026 — a chance to explore the latest
               trends in IoT, AI, and real-world software solutions being
               deployed across the industry.
@@ -369,7 +423,7 @@
 
       <!-- SKILLS -->
       <section id="skills">
-        <h2>Technical Skills</h2>
+        <h2 data-i18n="skills.title">Technical Skills</h2>
         <div class="container">
           <div class="skills-grid">
             <article>
@@ -385,7 +439,7 @@
                 <polyline points="8 6 2 12 8 18" />
                 <polyline points="16 6 22 12 16 18" />
               </svg>
-              <h3>FRONTEND</h3>
+              <h3 data-i18n="skills.frontend">FRONTEND</h3>
               <p>HTML, CSS, JavaScript, Bootstrap, React</p>
             </article>
 
@@ -404,7 +458,7 @@
                 <line x1="6" y1="6.5" x2="6.01" y2="6.5" />
                 <line x1="6" y1="17.5" x2="6.01" y2="17.5" />
               </svg>
-              <h3>BACKEND (FOCUS)</h3>
+              <h3 data-i18n="skills.backend">BACKEND (FOCUS)</h3>
               <p>C#, ASP.NET Core, SignalR, RESTful API, JWT Authentication</p>
             </article>
 
@@ -422,7 +476,7 @@
                 <path d="M21 5v6c0 1.66-4 3-9 3s-9-1.34-9-3V5" />
                 <path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6" />
               </svg>
-              <h3>Database</h3>
+              <h3 data-i18n="skills.database">Database</h3>
               <p>SQL Server, My Sql</p>
             </article>
 
@@ -440,7 +494,7 @@
                   d="M14.7 6.3a4 4 0 1 0-5.4 5.4L2 19v3h3l7.3-7.3a4 4 0 0 0 5.4-5.4z"
                 />
               </svg>
-              <h3>Tools</h3>
+              <h3 data-i18n="skills.tools">Tools</h3>
               <p>Git, GitHub, Postman, VS Code, DBeaver</p>
             </article>
 
@@ -465,8 +519,8 @@
                 <line x1="1" y1="9" x2="4" y2="9" />
                 <line x1="1" y1="14" x2="4" y2="14" />
               </svg>
-              <h3>IoT & Hardware</h3>
-              <p>Arduino, ESP32, ESP8266, MQTT (HiveMQ)</p>
+              <h3 data-i18n="skills.iot">IoT &amp; Hardware</h3>
+              <p>Arduino, ESP32, ESP8266, MQTT</p>
             </article>
           </div>
           <img src="./img/logo.jpg" alt="logo-coding" />
@@ -476,21 +530,26 @@
       <!-- PROJECTS -->
       <section id="projects">
         <div class="container">
-          <h2>Projects</h2>
+          <h2 data-i18n="projects.title">Projects</h2>
 
           <!-- Project 1 -->
           <article class="project">
-            <img src="./img/caider.jpg" alt="robot-photo" />
+            <img src="./img/caider.jpg" alt="Robot Caider (V1)" />
             <div>
-              <h3>IoT Robot Control and Management System</h3>
+              <h3 data-i18n="projects.robot.title">Robot Caider (V1)</h3>
               <p>
-                <strong>Role:</strong> Frontend & Backend <br />
-                Built a real-time robot control system using MQTT, enabling live
-                monitoring and command execution. Developed responsive
-                dashboards with React and RESTful APIs using ASP.NET Core.
+                <strong data-i18n="projects.role">Role:</strong>
+                <span data-i18n-html="projects.robot.description">
+                  Frontend, Backend &amp; Embedded Software <br />
+                  Built a real-time robot control system using MQTT, enabling
+                  live monitoring and command execution. Developed responsive
+                  dashboards with React and RESTful APIs using ASP.NET Core.
+                  Developed embedded software to connect the robot hardware
+                  with the control system and process commands.
+                </span>
               </p>
               <div class="tech-stack">
-                <span class="tech-label">Tech</span>
+                <span class="tech-label" data-i18n="projects.tech">Tech</span>
                 <span class="tech-badge">React</span>
                 <span class="tech-badge">Bootstrap</span>
                 <span class="tech-badge">ASP.NET Core</span>
@@ -510,7 +569,7 @@
                   href="https://www.youtube.com/watch?v=1dqWcqqI9gc"
                   target="_blank"
                 >
-                  Video Demo →
+                  <span data-i18n="projects.video">Video Demo →</span>
                 </a>
               </div>
             </div>
@@ -520,14 +579,18 @@
           <article class="project">
             <img src="./img/furshield.jpg" alt="Techwiz Screenshot" />
             <div>
-              <h3>Techwiz Global Tech Competition</h3>
+              <h3 data-i18n="projects.techwiz.title">
+                Techwiz Global Tech Competition
+              </h3>
               <p>
-                <strong>Role:</strong> Participated in international fullstack
-                competition. Built admin panel for pet shelter management
-                system.
+                <strong data-i18n="projects.role">Role:</strong>
+                <span data-i18n="projects.techwiz.description"
+                  >Participated in international fullstack competition. Built
+                  admin panel for pet shelter management system.</span
+                >
               </p>
               <div class="tech-stack">
-                <span class="tech-label">Tech</span>
+                <span class="tech-label" data-i18n="projects.tech">Tech</span>
                 <span class="tech-badge">Laravel</span>
                 <span class="tech-badge">MySQL</span>
 
@@ -545,14 +608,17 @@
           <article class="project">
             <img src="./img/nutri-planner.jpg" alt="NutriPlanner Screenshot" />
             <div>
-              <h3>NutriPlanner</h3>
+              <h3 data-i18n="projects.nutri.title">NutriPlanner</h3>
               <p>
-                <strong>Role: </strong>Developed admin dashboard and user
-                interface for a nutrition planning system, including statistics
-                overview and user management.
+                <strong data-i18n="projects.role">Role:</strong>
+                <span data-i18n="projects.nutri.description"
+                  >Developed admin dashboard and user interface for a nutrition
+                  planning system, including statistics overview and user
+                  management.</span
+                >
               </p>
               <div class="tech-stack">
-                <span class="tech-label">Tech</span>
+                <span class="tech-label" data-i18n="projects.tech">Tech</span>
                 <span class="tech-badge">Laravel</span>
                 <span class="tech-badge">MySQL</span>
                 <span class="tech-badge">Bootstrap</span>
@@ -570,7 +636,7 @@
       <!-- CHANNEL -->
       <section id="channel">
         <div class="container">
-          <h2>My Channel</h2>
+          <h2 data-i18n="channel.title">My Channel</h2>
           <a href="https://www.youtube.com/@TD-333-Tech" target="_blank">
             YouTube — DTECH-333
           </a>
@@ -581,8 +647,8 @@
     <!-- FOOTER / CONTACT -->
     <footer id="contact">
       <div class="container">
-        <h2>Contact</h2>
-        <p class="footer-desc">
+        <h2 data-i18n="footer.title">Contact</h2>
+        <p class="footer-desc" data-i18n="footer.description">
           Feel free to reach out if you'd like to collaborate, discuss
           technology, or simply say hello.
         </p>
@@ -601,7 +667,7 @@
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="m22 6-10 7L2 6" />
               </svg>
-              Email
+              <span data-i18n="contact.emailShort">Email</span>
             </span>
             <a href="mailto:trtdat161@gmail.com">trtdat161@gmail.com</a>
           </p>
@@ -620,7 +686,7 @@
                   d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
                 />
               </svg>
-              Phone
+              <span data-i18n="contact.phoneShort">Phone</span>
             </span>
             <a href="tel:0374757256">037 4757 256</a>
           </p>
@@ -639,7 +705,7 @@
                   d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.66-.22.66-.49v-1.73c-2.78.6-3.37-1.18-3.37-1.18-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.5 9.5 0 0 1 12 6.8a9.5 9.5 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.35 4.69-4.58 4.94.36.31.68.92.68 1.86v2.76c0 .27.18.59.67.49A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"
                 />
               </svg>
-              GitHub
+              <span data-i18n="contact.github">GitHub</span>
             </span>
             <a
               href="https://github.com/trtdat161"
@@ -667,7 +733,7 @@
                   stroke="none"
                 />
               </svg>
-              YouTube
+              <span data-i18n="contact.youtube">YouTube</span>
             </span>
             <a
               href="https://www.youtube.com/@TD-333-Tech"
@@ -693,7 +759,7 @@
                   d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
                 />
               </svg>
-              Facebook
+              <span data-i18n="contact.facebookShort">Facebook</span>
             </span>
             <a
               href="https://www.facebook.com/tien.at.684342"
@@ -716,7 +782,7 @@
                 <path d="M21 10c0 6-9 13-9 13s-9-7-9-13a9 9 0 0 1 18 0z" />
                 <circle cx="12" cy="10" r="3" />
               </svg>
-              Go Vap, Ho Chi Minh City
+              <span data-i18n="contact.location">Go Vap, Ho Chi Minh City</span>
             </span>
           </p>
         </address>
