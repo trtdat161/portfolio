@@ -945,7 +945,21 @@ section {
   font-weight: 300;
 }
 
-/* Tech stack — badge thay cho text thường, dùng chung 3 project */
+/* Project category and tech badges */
+#projects .project-category {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.3px;
+  color: var(--accent);
+  border: 1px solid rgba(79, 255, 176, 0.28);
+  background: var(--accent-dim);
+  padding: 4px 12px;
+  border-radius: 50px;
+}
+
 #projects .project > div .tech-stack {
   display: flex;
   flex-wrap: wrap;

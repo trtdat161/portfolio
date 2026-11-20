@@ -75,18 +75,26 @@ document.addEventListener("DOMContentLoaded", () => {
       "skills.tools": "Tools",
       "skills.iot": "IoT & Hardware",
       "projects.title": "Projects",
+      "projects.category.personal": "Personal Project",
+      "projects.category.competition": "Competition",
+      "projects.category.graduation": "Graduation Project",
       "projects.robot.title": "Robot Caider (V1)",
       "projects.role": "Role:",
+      "projects.personalRole": "Frontend, Backend & Firmware",
       "projects.robot.description":
-        "Frontend, Backend & Embedded Software <br /> Built a real-time robot control system using MQTT, enabling live monitoring and command execution. Developed responsive dashboards with React and RESTful APIs using ASP.NET Core, plus embedded software to connect the robot hardware with the control system and process commands.",
+        "Built an admin-only robot control system for Caider. The administrator connects to the robot and sends MQTT commands to trigger motions such as waving and rotating the neck joints. The dashboard provides an overview of installed hardware and tools to manage the robot's components, while onboard firmware receives commands and drives the corresponding movements.",
+      "projects.iot.title":
+        "IoT Environmental Monitoring and Alert System (One Device, Multiple Users)",
+      "projects.iot.description":
+        "Monitors temperature, humidity, and gas levels with ESP8266, DHT11, and MQ-2 sensors over MQTT. Supports shared-device Claim/Join, online/offline status, real-time dashboard and email alerts, per-user notification history and read status, and admin user/device management with daily and monthly alert statistics.",
       "projects.tech": "Tech",
       "projects.video": "Video Demo →",
       "projects.techwiz.title": "Techwiz Global Tech Competition",
       "projects.techwiz.description":
-        "Participated in international fullstack competition. Built admin panel for pet shelter management system.",
+        "As part of an international full-stack competition, I contributed to the administrator-facing module of a pet shelter management platform. My work focused on building the shelter-management functionality, enabling administrators to maintain and oversee shelter information through the system.",
       "projects.nutri.title": "NutriPlanner",
       "projects.nutri.description":
-        "Developed admin dashboard and user interface for a nutrition planning system, including statistics overview and user management.",
+        "Designed and developed the product landing page to introduce the nutrition-planning platform and communicate its value to users. I also built the admin dashboard and user-management functionality, giving administrators a centralized interface to oversee platform accounts.",
       "channel.title": "My Channel",
       "footer.title": "Contact",
       "footer.description":
@@ -158,18 +166,26 @@ document.addEventListener("DOMContentLoaded", () => {
       "skills.tools": "Công cụ",
       "skills.iot": "IoT & Phần cứng",
       "projects.title": "Dự án",
+      "projects.category.personal": "Dự án cá nhân",
+      "projects.category.competition": "Cuộc thi",
+      "projects.category.graduation": "Đồ án",
       "projects.robot.title": "Robot Caider (V1)",
       "projects.role": "Vai trò:",
+      "projects.personalRole": "Frontend, Backend & Firmware",
       "projects.robot.description":
-        "Frontend, Backend & Lập trình nhúng <br /> Xây dựng hệ thống điều khiển robot thời gian thực sử dụng MQTT, hỗ trợ giám sát và gửi lệnh trực tiếp. Phát triển dashboard tương thích nhiều thiết bị bằng React và RESTful API với ASP.NET Core, đồng thời viết phần mềm nhúng để kết nối phần cứng robot với hệ thống điều khiển và xử lý lệnh.",
+        "Xây dựng hệ thống điều khiển Caider dành riêng cho quản trị viên. Admin kết nối với robot và gửi lệnh MQTT để thực hiện các chuyển động như vẫy tay, xoay khớp cổ. Dashboard hiển thị tổng quan phần cứng đã lắp đặt và hỗ trợ quản lý các thành phần trên robot; firmware tiếp nhận lệnh và điều khiển chuyển động tương ứng.",
+      "projects.iot.title":
+        "IoT Environmental Monitoring and Alert System (One Device, Multiple Users)",
+      "projects.iot.description":
+        "Giám sát nhiệt độ, độ ẩm và khí gas bằng ESP8266, DHT11 và MQ-2 qua MQTT. Hỗ trợ Claim/Join thiết bị dùng chung, theo dõi trạng thái online/offline, cảnh báo thời gian thực trên Dashboard và qua Email, lịch sử thông báo theo người dùng và trạng thái đã đọc, cùng chức năng quản lý người dùng/thiết bị và thống kê cảnh báo theo ngày, tháng cho Admin.",
       "projects.tech": "Công nghệ",
       "projects.video": "Video giới thiệu →",
       "projects.techwiz.title": "Cuộc thi công nghệ quốc tế Techwiz",
       "projects.techwiz.description":
-        "Tham gia cuộc thi phát triển ứng dụng fullstack quốc tế. Xây dựng trang quản trị cho hệ thống quản lý trung tâm cứu hộ thú cưng.",
+        "Trong khuôn khổ cuộc thi phát triển ứng dụng full-stack quốc tế, tôi tham gia xây dựng phân hệ dành cho quản trị viên của nền tảng quản lý trung tâm cứu hộ thú cưng. Tôi tập trung phát triển chức năng quản lý nơi trú ẩn, hỗ trợ quản trị viên cập nhật và theo dõi thông tin các cơ sở trên hệ thống.",
       "projects.nutri.title": "NutriPlanner",
       "projects.nutri.description":
-        "Phát triển trang quản trị và giao diện người dùng cho hệ thống lập kế hoạch dinh dưỡng, bao gồm tổng quan thống kê và quản lý người dùng.",
+        "Thiết kế và phát triển landing page nhằm giới thiệu nền tảng lập kế hoạch dinh dưỡng và truyền tải giá trị đến người dùng. Đồng thời, tôi xây dựng dashboard quản trị cùng các chức năng quản lý người dùng, cung cấp cho quản trị viên giao diện tập trung để theo dõi tài khoản trên hệ thống.",
       "channel.title": "Kênh của tôi",
       "footer.title": "Liên hệ",
       "footer.description":

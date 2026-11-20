@@ -536,23 +536,31 @@
           <article class="project">
             <img src="./img/caider.jpg" alt="Robot Caider (V1)" />
             <div>
+              <span
+                class="project-category"
+                data-i18n="projects.category.personal"
+                >Personal Project</span
+              >
               <h3 data-i18n="projects.robot.title">Robot Caider (V1)</h3>
               <p>
                 <strong data-i18n="projects.role">Role:</strong>
-                <span data-i18n-html="projects.robot.description">
-                  Frontend, Backend &amp; Embedded Software <br />
-                  Built a real-time robot control system using MQTT, enabling
-                  live monitoring and command execution. Developed responsive
-                  dashboards with React and RESTful APIs using ASP.NET Core.
-                  Developed embedded software to connect the robot hardware
-                  with the control system and process commands.
-                </span>
+                <span data-i18n="projects.personalRole"
+                  >Frontend, Backend &amp; Firmware</span
+                >
+              </p>
+              <p data-i18n="projects.robot.description">
+                Built an admin-only robot control system for Caider. The
+                administrator connects to the robot and sends MQTT commands to
+                trigger motions such as waving and rotating the neck joints. The
+                dashboard provides an overview of installed hardware and tools
+                to manage the robot's components, while onboard firmware
+                receives commands and drives the corresponding movements.
               </p>
               <div class="tech-stack">
                 <span class="tech-label" data-i18n="projects.tech">Tech</span>
                 <span class="tech-badge">React</span>
-                <span class="tech-badge">Bootstrap</span>
                 <span class="tech-badge">ASP.NET Core</span>
+                <span class="tech-badge">JWT</span>
                 <span class="tech-badge">SQL Server</span>
                 <span class="tech-badge">MQTT</span>
               </div>
@@ -577,24 +585,92 @@
 
           <!-- Project 2 -->
           <article class="project">
+            <img
+              src="./img/iot-device.jpg"
+              alt="IoT Environmental Monitoring and Alert System (One Device, Multiple Users)"
+            />
+            <div>
+              <span
+                class="project-category"
+                data-i18n="projects.category.personal"
+                >Personal Project</span
+              >
+              <h3 data-i18n="projects.iot.title">
+                IoT Environmental Monitoring and Alert System (One Device,
+                Multiple Users)
+              </h3>
+              <p>
+                <strong data-i18n="projects.role">Role:</strong>
+                <span data-i18n="projects.personalRole"
+                  >Frontend, Backend &amp; Firmware</span
+                >
+              </p>
+              <p data-i18n="projects.iot.description">
+                Monitors temperature, humidity, and gas levels with ESP8266,
+                DHT11, and MQ-2 sensors over MQTT. Supports shared-device
+                Claim/Join, online/offline status, real-time dashboard and email
+                alerts, per-user notification history and read status, and admin
+                user/device management with daily and monthly alert statistics.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-label" data-i18n="projects.tech">Tech</span>
+                <span class="tech-badge">React</span>
+                <span class="tech-badge">ASP.NET Core</span>
+                <span class="tech-badge">JWT</span>
+                <span class="tech-badge">SignalR</span>
+                <span class="tech-badge">SQL Server</span>
+                <span class="tech-badge">MQTT</span>
+                <span class="tech-badge">ESP8266</span>
+                <span class="tech-badge">MailKit</span>
+                <span class="tech-badge">SMTP with STARTTLS</span>
+                <span class="tech-badge">i18next</span>
+              </div>
+              <div class="project-links">
+                <br />
+                <a
+                  href="https://github.com/trtdat161/iot-system-manager#iot-system-manager"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  GitHub →
+                </a>
+                <br />
+                <a
+                  href="https://www.youtube.com/watch?v=01K5N4REAvU"
+                  target="_blank"
+                >
+                  <span data-i18n="projects.video">Video Demo →</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project">
             <img src="./img/furshield.jpg" alt="Techwiz Screenshot" />
             <div>
+              <span
+                class="project-category"
+                data-i18n="projects.category.competition"
+                >Competition</span
+              >
               <h3 data-i18n="projects.techwiz.title">
                 Techwiz Global Tech Competition
               </h3>
               <p>
                 <strong data-i18n="projects.role">Role:</strong>
                 <span data-i18n="projects.techwiz.description"
-                  >Participated in international fullstack competition. Built
-                  admin panel for pet shelter management system.</span
-                >
+                  >As part of an international full-stack competition, I
+                  contributed to the administrator-facing module of a pet
+                  shelter management platform. My work focused on building the
+                  shelter-management functionality, enabling administrators to
+                  maintain and oversee shelter information through the system.
+                </span>
               </p>
               <div class="tech-stack">
                 <span class="tech-label" data-i18n="projects.tech">Tech</span>
                 <span class="tech-badge">Laravel</span>
                 <span class="tech-badge">MySQL</span>
-
-                <span class="tech-badge">Bootstrap</span>
               </div>
               <a
                 href="https://github.com/trtdat161/Techwiz-pet-care"
@@ -604,24 +680,30 @@
             </div>
           </article>
 
-          <!-- Project 3 -->
+          <!-- Project 4 -->
           <article class="project">
             <img src="./img/nutri-planner.jpg" alt="NutriPlanner Screenshot" />
             <div>
+              <span
+                class="project-category"
+                data-i18n="projects.category.graduation"
+                >Graduation Project</span
+              >
               <h3 data-i18n="projects.nutri.title">NutriPlanner</h3>
               <p>
                 <strong data-i18n="projects.role">Role:</strong>
                 <span data-i18n="projects.nutri.description"
-                  >Developed admin dashboard and user interface for a nutrition
-                  planning system, including statistics overview and user
-                  management.</span
+                  >Designed and developed the product landing page to introduce
+                  the nutrition-planning platform and communicate its value to
+                  users. I also built the admin dashboard and user-management
+                  functionality, giving administrators a centralized interface
+                  to oversee platform accounts.</span
                 >
               </p>
               <div class="tech-stack">
                 <span class="tech-label" data-i18n="projects.tech">Tech</span>
                 <span class="tech-badge">Laravel</span>
                 <span class="tech-badge">MySQL</span>
-                <span class="tech-badge">Bootstrap</span>
               </div>
               <a
                 href="https://github.com/trtdat161/nutri-planner"
